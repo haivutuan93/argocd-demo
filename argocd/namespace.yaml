@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: argocd-demo
+  labels:
+    app.kubernetes.io/name: argocd-demo
+    app.kubernetes.io/managed-by: argocd
+

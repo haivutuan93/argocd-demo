@@ -1,0 +1,44 @@
+# ArgoCD Application cho local development (Docker Desktop)
+# Sử dụng local path thay vì git repository
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd-demo-local
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  
+  source:
+    # Sử dụng local path - cần mount volume vào argocd-repo-server
+    # Hoặc có thể sử dụng git repository local
+    repoURL: https://github.com/YOUR_USERNAME/argocd-demo.git
+    targetRevision: main
+    path: helm/argocd-demo
+    
+    helm:
+      valueFiles:
+        - values.yaml
+      parameters:
+        - name: replicaCount
+          value: "1"
+        - name: app.environment
+          value: "local"
+        - name: resources.requests.memory
+          value: "128Mi"
+        - name: resources.limits.memory
+          value: "256Mi"
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd-demo
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+

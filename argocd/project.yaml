@@ -1,0 +1,35 @@
+# ArgoCD AppProject (optional - để tổ chức applications)
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: demo-project
+  namespace: argocd
+spec:
+  description: Demo project for ArgoCD applications
+  
+  # Cho phép deploy vào namespace nào
+  destinations:
+    - namespace: argocd-demo
+      server: https://kubernetes.default.svc
+    - namespace: default
+      server: https://kubernetes.default.svc
+
+  # Cho phép source từ đâu
+  sourceRepos:
+    - '*'
+
+  # Cho phép tạo những loại resource nào
+  clusterResourceWhitelist:
+    - group: ''
+      kind: Namespace
+
+  namespaceResourceWhitelist:
+    - group: ''
+      kind: '*'
+    - group: apps
+      kind: '*'
+    - group: networking.k8s.io
+      kind: '*'
+    - group: autoscaling
+      kind: '*'
+
