@@ -3,9 +3,11 @@
 replicaCount: 2
 
 image:
-  repository: argocd-demo
+  # Local registry: localhost:30500/argocd-demo
+  # Docker Hub: your-username/argocd-demo
+  repository: localhost:30500/argocd-demo
   tag: "1.0.0"
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 
 imagePullSecrets: []
 nameOverride: ""

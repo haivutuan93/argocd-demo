@@ -20,7 +20,7 @@ public class HelloController {
     @GetMapping("/")
     public Map<String, Object> hello() {
         Map<String, Object> response = new HashMap<>();
-        response.put("message", "Hello from ArgoCD Demo!");
+        response.put("message", "Hello from ArgoCD Demo! Test");
         response.put("version", appVersion);
         response.put("environment", environment);
         response.put("timestamp", LocalDateTime.now().toString());

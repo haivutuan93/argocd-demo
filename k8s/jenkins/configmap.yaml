@@ -1,0 +1,17 @@
+# ConfigMap chứa plugins cần cài đặt
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: jenkins-plugins
+  namespace: jenkins
+data:
+  plugins.txt: |
+    git
+    workflow-aggregator
+    pipeline-stage-view
+    docker-workflow
+    docker-plugin
+    credentials-binding
+    configuration-as-code
+    job-dsl
+

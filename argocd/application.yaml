@@ -10,7 +10,7 @@ spec:
   
   source:
     # Thay đổi repoURL thành URL git repository của bạn
-    repoURL: https://github.com/YOUR_USERNAME/argocd-demo.git
+    repoURL: https://github.com/haivutuan93/argocd-demo.git
     targetRevision: HEAD
     path: helm/argocd-demo
     
